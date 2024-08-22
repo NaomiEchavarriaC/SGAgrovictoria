@@ -1,0 +1,103 @@
+﻿@{
+
+    ViewData["Title"] = "Facturacion";
+
+}
+<div class="pcoded-content">
+    <div class="card">
+
+        <div class="card-header">
+            <div class="justify-content-between row">
+                <div class="col-md-auto">
+                    <h5 class="mb-3 mb-md-0">Items seleccionados (1 Items)</h5>
+                </div>
+
+                <div class="col-md-auto">
+                    <a role="button" tabindex="0" href="@Url.Action("FacturacionCarrito", "Inicio")"
+                       class="btn btn-secondary btn-sm">Volver</a>
+                   <a role="button" tabindex="0" href=""
+                           class="btn btn-primary btn-sm">Confirmar</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="p-0 card-body">
+                <div class="gx-card mx-0 bg-200 text-900 fs-10 fw-semibold row">
+                    <div class="py-2 col-md-8 col-9">Producto</div>
+                    <div class="col-md-4 col-3">
+                        <div class="row">
+                            <div class="py-2 d-none d-md-block text-center col-md-8">Cantidad</div>
+                            <div class="text-end py-2 col-md-4 col-12">Precio</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gx-card mx-0 align-items-center border-bottom border-200 row">
+                    <div class="py-3 col-8">
+                        <div class="d-flex align-items-center">
+                            
+                            <a href="/e-commerce/product/product-details">
+                                <img src="~/page/images/product/triofeed_peces.jpg" width="80"
+                                     alt="Apple iPad Air 2019 (3GB RAM, 128GB ROM, 8MP Main Camera)"
+                                     class="img-fluid rounded-1 me-3 d-none d-md-block">
+                            </a>
+                            <div class="flex-1" style="Padding: 10px; margin:5px;">
+                                <h8 class="fs-9">
+                                    <a class="text-900" href="/e-commerce/product/product-details">
+                                        Alimento para peces
+                                    </a>
+                                </h8>
+                                <div class="fs-11 fs-md-10">
+                                    <button type="button"
+                                            class="text-danger fs-11 fs-md-10 fw-normal p-0 btn btn-link btn-sm">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-3 col-4">
+                        <div class="align-items-center row">
+                            <div class="d-flex justify-content-end justify-content-md-center col-md-8 order-md-0 order-1">
+                                <div>
+                                    <div class="input-group input-group-sm">
+                                        <button type="button"
+                                                class="px-2 border-300 btn btn-outline-secondary btn-sm">
+                                            -
+                                        </button><input min="1"
+                                                        type="number" class="text-center px-2 input-spin-none form-control" value="1"
+                                                        style="width: 50px;"><button type="button"
+                                                                                     class="px-2 border-300 btn btn-outline-secondary btn-sm">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end ps-0 mb-2 mb-md-0 text-600 col-md-4 order-md-1 order-0">$750</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fw-bold gx-card mx-0 row">
+                    <div class="py-2 text-end text-900 col-md-8 col-9">Total</div>
+                    <div class="px-0 col">
+                        <div class="gx-card mx-0 row">
+                            <div class="py-2 d-none d-md-block text-center col-md-7">1 (items)</div>
+                            <div class="text-end py-2 text-nowrap px-x1 col-md-5 col-12">$750</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="justify-content-between row">
+                <div class="col-md-auto">
+                    <h5 class="mb-3 mb-md-0"></h5>
+                </div>
+
+                <div class="col-md-auto">
+                    <a role="button" tabindex="0" href="@Url.Action("PasarelaPago", "Inicio")"
+                       class="btn btn-primary btn-sm">Confirmar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
