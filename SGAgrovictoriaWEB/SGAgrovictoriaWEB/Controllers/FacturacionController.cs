@@ -30,5 +30,9 @@ namespace SGAgrovictoriaWEB.Controllers
         {
             return View();
         }
-    }
+		public IActionResult Inventario()
+		{
+			return View();
+		}
+	}
 }
