@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarClientes";
+}
+
+<div class="text-center mt-5 mb-3">
+    <h1>Lista de Clientes</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+        <table id="Tabla" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Ubicacion</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ana Rodríguez</td>
+                    <td>anarodriguez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Carlos Pérez</td>
+                    <td>carlos.perez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Laura Gómez</td>
+                    <td>laura.gomez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Juan Martínez</td>
+                    <td>juan.martinez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>María Torres</td>
+                    <td>maria.torres@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Pedro Sánchez</td>
+                    <td>pedro.sanchez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Sofía López</td>
+                    <td>sofia.lopez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Sofía López</td>
+                    <td>sofia.lopez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                <tr>
+                    <td>David Ramírez</td>
+                    <td>david.ramirez@email.com</td>
+                    <td>123456789</td>
+                    <td>Costa Rica</td>
+                    <td><a href="@Url.Action("ActualizarCliente", "Cliente")"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1">
+    </div>
+
+
+    <div class="col-2 mx-auto justify-content-center align-items-center mt-2">
+        <a href="@Url.Action("AgregarCliente", "Cliente")" class="btn btn-block btn-primary mb-4">Agregar Cliente</a>
+    </div>
+
+</div>
+
+
+
+<script src="~/page/vendor/jquery/jquery.js"></script>
+<script src="~/page/js/DataTable.js"></script>

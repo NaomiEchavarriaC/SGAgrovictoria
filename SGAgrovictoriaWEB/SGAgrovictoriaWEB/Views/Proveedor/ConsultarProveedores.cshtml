@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarProveedores";
+}
+
+<div class="pcoded-content">
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Gestión de Proveedores</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="#!">Proveedores</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Opciones de Gestión</h5>
+                    <a href="@Url.Action("Create", "Proveedores")" class="btn btn-primary">Agregar Proveedor</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-4">
+            <div class="card flat-card">
+                <div class="row-table">
+                    <div class="col-sm-6 card-body br">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-user text-c-green mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>250</h5>
+                                <span>Proveedores Activos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-truck text-c-red mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>80%</h5>
+                                <span>Entregas Puntuales</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-table">
+                    <div class="col-sm-6 card-body br">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-dollar-sign text-c-blue mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>$1.2M</h5>
+                                <span>Pagos Realizados</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-alert-circle text-c-yellow mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>15</h5>
+                                <span>Incidencias</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card flat-card widget-primary-card">
+                <div class="row-table">
+                    <div class="col-sm-3 card-body">
+                        <i class="feather icon-star"></i>
+                    </div>
+                    <div class="col-sm-9">
+                        <h4>4.8/5</h4>
+                        <h6>Calificación Media</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-4">
+            <div class="card flat-card">
+                <div class="row-table">
+                    <div class="col-sm-6 card-body br">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-shield text-c-blue mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>30</h5>
+                                <span>Contratos Vigentes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-clock text-c-blue mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>95%</h5>
+                                <span>Renovaciones a Tiempo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-table">
+                    <div class="col-sm-6 card-body br">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-refresh-cw text-c-blue mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>5</h5>
+                                <span>Proveedores Nuevos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="icon feather icon-check text-c-blue mb-1 d-block"></i>
+                            </div>
+                            <div class="col-sm-8 text-md-center">
+                                <h5>100%</h5>
+                                <span>Pagos a Tiempo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card flat-card widget-purple-card">
+                <div class="row-table">
+                    <div class="col-sm-3 card-body">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="col-sm-9">
+                        <h4>3</h4>
+                        <h6>Reconocimientos</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-4">
+            <div class="card support-bar overflow-hidden">
+                <div class="card-body pb-0">
+                    <h2 class="m-0">20</h2>
+                    <span class="text-c-blue">Solicitudes de Soporte</span>
+                    <p class="mb-3 mt-3">Número total de solicitudes de soporte abiertas actualmente.</p>
+                </div>
+                <div id="support-chart"></div>
+                <div class="card-footer bg-primary text-white">
+                    <div class="row text-center">
+                        <div class="col">
+                            <h4 class="m-0 text-white">5</h4>
+                            <span>Abiertas</span>
+                        </div>
+                        <div class="col">
+                            <h4 class="m-0 text-white">10</h4>
+                            <span>En Proceso</span>
+                        </div>
+                        <div class="col">
+                            <h4 class="m-0 text-white">5</h4>
+                            <span>Resueltas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Proveedores</h5>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Contacto</th>
+                                <th>Correo Electrónico</th>
+                                <th>Teléfono</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Proveedor 1</td>
+                                <td>Juan Pérez</td>
+                                <td>juan.perez@gmail.com</td>
+                                <td>+506 5555555</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Proveedores", new { id = 1 })" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="@Url.Action("Delete", "Proveedores", new { id = 1 })" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Proveedor 2</td>
+                                <td>María Gómez</td>
+                                <td>maria.gomez@gmail.com</td>
+                                <td>+506 5555555</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Proveedores", new { id = 2 })" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="@Url.Action("Delete", "Proveedores", new { id = 2 })" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Proveedor 3</td>
+                                <td>Carlos Sánchez</td>
+                                <td>carlos.sanchez@gmail.com</td>
+                                <td>+506 5555555</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Proveedores", new { id = 3 })" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="@Url.Action("Delete", "Proveedores", new { id = 3 })" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Proveedor 4</td>
+                                <td>Ana López</td>
+                                <td>ana.lopez@gmail.com</td>
+                                <td>+506 5555555</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Proveedores", new { id = 4 })" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="@Url.Action("Delete", "Proveedores", new { id = 4 })" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Proveedor 5</td>
+                                <td>Pedro Martínez</td>
+                                <td>pedro.martinez@gmail.com</td>
+                                <td>+506 5555555</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Proveedores", new { id = 5 })" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="@Url.Action("Delete", "Proveedores", new { id = 5 })" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
