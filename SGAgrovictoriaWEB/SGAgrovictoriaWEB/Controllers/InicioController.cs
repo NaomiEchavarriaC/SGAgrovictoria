@@ -15,5 +15,21 @@ namespace SGAgrovictoriaWEB.Controllers
         {
             return View();
         }
+        public IActionResult FacturacionCarrito()
+        {
+            return View();
+        }
+        public IActionResult FacturacionLista()
+        {
+            return View();
+        }
+        public IActionResult Reportes()
+        {
+            return View();
+        }
+        public IActionResult Contabilidad()
+        {
+            return View();
+        }
     }
 }
