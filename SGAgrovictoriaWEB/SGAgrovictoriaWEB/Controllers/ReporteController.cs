@@ -4,7 +4,7 @@ namespace SGAgrovictoriaWEB.Controllers
 {
     public class ReporteController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Reportes()
         {
             return View();
         }
