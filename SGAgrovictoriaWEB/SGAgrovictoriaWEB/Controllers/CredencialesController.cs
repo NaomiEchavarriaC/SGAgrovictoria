@@ -2,9 +2,9 @@
 
 namespace SGAgrovictoriaWEB.Controllers
 {
-    public class ReporteController : Controller
+    public class CredencialesController : Controller
     {
-        public IActionResult ConsultarReportes()
+        public IActionResult Index()
         {
             return View();
         }
