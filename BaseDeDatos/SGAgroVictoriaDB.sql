@@ -13,7 +13,7 @@ GO
 -------------------------------------------------------------------------
 
 CREATE TABLE PROVINCIAS (
-    ID_PROVINCIA                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    ID_PROVINCIA                        BIGINT NOT NULL PRIMARY KEY,
     NOMBRE_PROVINCIA                    VARCHAR(120) NOT NULL
 );
 GO
@@ -24,7 +24,7 @@ GO
 -------------------------------------------------------------------------
 
 CREATE TABLE CANTONES (
-    ID_CANTON                           BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    ID_CANTON                           BIGINT NOT NULL PRIMARY KEY,
     ID_PROVINCIA                        BIGINT NOT NULL,
     NOMBRE_CANTON                       VARCHAR(120) NOT NULL,
     CONSTRAINT FK_CANTONES_PROVINCIAS FOREIGN KEY (ID_PROVINCIA)
@@ -38,7 +38,7 @@ GO
 -------------------------------------------------------------------------
 
 CREATE TABLE DISTRITOS (
-    ID_DISTRITO                         BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    ID_DISTRITO                         BIGINT NOT NULL PRIMARY KEY,
     ID_CANTON                           BIGINT NOT NULL,
     NOMBRE_DISTRITO                     VARCHAR(120) NOT NULL,
     CONSTRAINT FK_DISTRITOS_CANTONES FOREIGN KEY (ID_CANTON)
