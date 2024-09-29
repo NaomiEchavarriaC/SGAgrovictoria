@@ -48,5 +48,108 @@
             los datos de la aplicación. Con Dapper, la idea es escribir manualmente las consultas SQL 
             para interactuar con la base de datos, pero simplificando el proceso de mapear los resultados 
             de esas consultas a objetos C#.
+    
+    6. Ejemplo de un modelo llamando a la base de datos
 
-*/
+        Respuesta respuesta = new Respuesta();
+
+        using (var db = new SqlConnection(iConfiguration.GetSection("ConnectionStrings:DefaultConnection").Value))
+        {
+            var resultado = db.Query<Ubicacion>("SP_GET_UBICACIONES", new { }, commandType: System.Data.CommandType.StoredProcedure);
+        
+            if (resultado.Count() > 0)
+            {
+                respuesta.Codigo = 1;
+                respuesta.Mensaje = "La información de las ubicaciones se ha encontrado exitosamente";
+                respuesta.Contenido = resultado;
+                return respuesta;
+            }
+            else
+            {
+                respuesta.Codigo = 0;
+                respuesta.Mensaje = "Ha ocurrido un error al cargar las ubicaciones";
+                respuesta.Contenido = false;
+                return respuesta;
+            }
+        }
+
+        6.1. Creación de una respuesta:
+        
+            Respuesta respuesta = new Respuesta();
+            
+            Aquí se crea una instancia de la clase Respuesta, que se utiliza para 
+            estructurar la respuesta que se enviará de vuelta al cliente. Esta clase 
+            podría tener propiedades como Codigo, Mensaje y Contenido.
+        
+        6.2. Conexión a la base de datos:
+                
+            using (var db = new SqlConnection(iConfiguration.GetSection("ConnectionStrings:DefaultConnection").Value))
+            
+            Se utiliza SqlConnection de Microsoft.Data.SqlClient para conectarse a 
+            la base de datos.
+            
+            iConfiguration es un objeto que probablemente se usa para acceder a la 
+            configuración de la aplicación, incluyendo cadenas de conexión.
+            
+            GetSection("ConnectionStrings:DefaultConnection").Value recupera la 
+            cadena de conexión de la base de datos, que se define en un archivo de 
+            configuración (como appsettings.json).
+        
+        6.3. Consulta a la base de datos:
+        
+            var resultado = db.Query<Ubicacion>("SP_GET_UBICACIONES", new { }, commandType: System.Data.CommandType.StoredProcedure);
+            
+            db.Query<Ubicacion> usa Dapper para ejecutar una consulta SQL. Aquí se 
+            llama a un procedimiento almacenado llamado SP_GET_UBICACIONES.
+            
+            new { } se usa para pasar parámetros al procedimiento almacenado, pero en 
+            este caso, no se pasan parámetros (se deja vacío).
+            
+            commandType: System.Data.CommandType.StoredProcedure indica que se está 
+            llamando a un procedimiento almacenado.
+        
+        6.4. Verificación del resultado:
+        
+            if (resultado.Count() > 0)
+            
+            Aquí se verifica si hay resultados devueltos por la consulta. resultado 
+            es una colección de objetos de tipo Ubicacion, y Count() cuenta cuántos 
+            elementos hay.
+        
+        6.5. Construcción de la respuesta:
+        
+            Si se encontraron resultados:
+            
+                respuesta.Codigo = 1;
+                respuesta.Mensaje = "La información de las ubicaciones se ha encontrado exitosamente";
+                respuesta.Contenido = resultado;
+                return respuesta;
+                
+                Codigo = 1 indica éxito.
+                
+                Mensaje proporciona información al usuario.
+                
+                Contenido se establece con el resultado de la consulta, que son 
+                las ubicaciones encontradas.
+            
+            Si no se encontraron resultados:
+            
+                respuesta.Codigo = 0;
+                respuesta.Mensaje = "Ha ocurrido un error al cargar las ubicaciones";
+                respuesta.Contenido = false;
+                return respuesta;
+                
+                Codigo = 0 indica un error.
+                Mensaje explica el problema.
+                Contenido se establece en false, lo que puede ser una manera de indicar 
+                que no hay datos disponibles.
+        
+        6.6. Resumen
+        
+            Este código se conecta a una base de datos usando Dapper para ejecutar 
+            un procedimiento almacenado que recupera ubicaciones. Dependiendo de si 
+            se encontraron o no resultados, devuelve una respuesta estructurada que
+            contiene un código, un mensaje y el contenido de los datos recuperados o
+            un indicador de error.
+
+ */
