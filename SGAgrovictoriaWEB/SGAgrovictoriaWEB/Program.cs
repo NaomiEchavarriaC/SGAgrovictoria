@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICredencialModel, CredencialModel>();
+builder.Services.AddScoped<IProveedorModel, ProveedorModel>();
 
 var app = builder.Build();
 
