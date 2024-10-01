@@ -1,7 +1,12 @@
+using SGAgrovictoriaWEB.Interfaces;
+using SGAgrovictoriaWEB.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ICredencialModel, CredencialModel>();
 
 var app = builder.Build();
 

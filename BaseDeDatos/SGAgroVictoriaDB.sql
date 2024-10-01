@@ -1,4 +1,3 @@
-
 USE [master]
 GO
 
@@ -9,236 +8,223 @@ USE [SGAgroVictoriaDB]
 GO
 
 -------------------------------------------------------------------------
--- TABLA PROVINCIAS
+-- TABLA Provincias
 -------------------------------------------------------------------------
 
-CREATE TABLE PROVINCIAS (
-    ID_PROVINCIA                        BIGINT NOT NULL PRIMARY KEY,
-    NOMBRE_PROVINCIA                    VARCHAR(120) NOT NULL
+CREATE TABLE Provincias (
+    IdProvincia                        BIGINT NOT NULL PRIMARY KEY,
+    NombreProvincia                    VARCHAR(120) NOT NULL
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA CANTONES
+-- TABLA Cantones
 -------------------------------------------------------------------------
 
-CREATE TABLE CANTONES (
-    ID_CANTON                           BIGINT NOT NULL PRIMARY KEY,
-    ID_PROVINCIA                        BIGINT NOT NULL,
-    NOMBRE_CANTON                       VARCHAR(120) NOT NULL,
-    CONSTRAINT FK_CANTONES_PROVINCIAS FOREIGN KEY (ID_PROVINCIA)
-        REFERENCES PROVINCIAS(ID_PROVINCIA)
+CREATE TABLE Cantones (
+    IdCanton                           BIGINT NOT NULL PRIMARY KEY,
+    IdProvincia                        BIGINT NOT NULL,
+    NombreCanton                       VARCHAR(120) NOT NULL,
+    CONSTRAINT FkCantonesProvincias FOREIGN KEY (IdProvincia)
+        REFERENCES Provincias(IdProvincia)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA DISTRITOS
+-- TABLA Distritos
 -------------------------------------------------------------------------
 
-CREATE TABLE DISTRITOS (
-    ID_DISTRITO                         BIGINT NOT NULL PRIMARY KEY,
-    ID_CANTON                           BIGINT NOT NULL,
-    NOMBRE_DISTRITO                     VARCHAR(120) NOT NULL,
-    CONSTRAINT FK_DISTRITOS_CANTONES FOREIGN KEY (ID_CANTON)
-        REFERENCES CANTONES(ID_CANTON)
+CREATE TABLE Distritos (
+    IdDistrito                         BIGINT NOT NULL PRIMARY KEY,
+    IdCanton                           BIGINT NOT NULL,
+    NombreDistrito                     VARCHAR(120) NOT NULL,
+    CONSTRAINT FkDistritosCantones FOREIGN KEY (IdCanton)
+        REFERENCES Cantones(IdCanton)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA CLIENTES
+-- TABLA Clientes
 -------------------------------------------------------------------------
 
-CREATE TABLE CLIENTES (
-    ID_CLIENTE                          BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_DISTRITO                         BIGINT NOT NULL,
-    ESTADO                              BIT NOT NULL,
-    NOMBRE_CLIENTE                      VARCHAR(120) NOT NULL,
-    APELLIDO_CLIENTE                    VARCHAR(120) NOT NULL,
-    GENERO                              VARCHAR(12) NOT NULL,
-    EDAD                                INT NOT NULL,
-    CORREO                              VARCHAR(180) NOT NULL,
-    TELEFONO                            VARCHAR(16) NOT NULL,
-    IDENTIFICACION                      INT NOT NULL,
-    RUTA_IMAGEN                         VARCHAR(255) NULL,
-    CONSTRAINT FK_CLIENTES_DISTRITOS FOREIGN KEY (ID_DISTRITO)
-        REFERENCES DISTRITOS(ID_DISTRITO)
+CREATE TABLE Clientes (
+    IdCliente                          BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdDistrito                         BIGINT NOT NULL,
+    Estado                             BIT NOT NULL,
+    NombreCliente                      VARCHAR(120) NOT NULL,
+    ApellidoCliente                    VARCHAR(120) NOT NULL,
+    Genero                             VARCHAR(12) NOT NULL,
+    Edad                               INT NOT NULL,
+    Correo                             VARCHAR(180) NOT NULL,
+    Telefono                           VARCHAR(16) NOT NULL,
+    Identificacion                     INT NOT NULL,
+    RutaImagen                         VARCHAR(255) NULL,
+    CONSTRAINT FkClientesDistritos FOREIGN KEY (IdDistrito)
+        REFERENCES Distritos(IdDistrito)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA DESCUENTOS
+-- TABLA Descuentos
 -------------------------------------------------------------------------
 
-CREATE TABLE DESCUENTOS (
-    ID_DESCUENTO                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ESTADO                              BIT NOT NULL,
-    NOMBRE_DESCUENTO                    VARCHAR(120) NOT NULL,
-    DESCRIPCION_DESCUENTO               VARCHAR(120) NOT NULL,
-    FECHA_INICIO                        DATETIME NOT NULL,
-    FECHA_FIN                           DATETIME NULL
+CREATE TABLE Descuentos (
+    IdDescuento                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    Estado                             BIT NOT NULL,
+    NombreDescuento                    VARCHAR(120) NOT NULL,
+    DescripcionDescuento               VARCHAR(120) NOT NULL,
+    FechaInicio                        DATETIME NOT NULL,
+    FechaFin                           DATETIME NULL
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA ORDENES
+-- TABLA Ordenes
 -------------------------------------------------------------------------
 
-CREATE TABLE ORDENES (
-    ID_ORDEN                            BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_DESCUENTO                        BIGINT NOT NULL,
-    ID_CLIENTE                          BIGINT NOT NULL,
-    ESTADO                              BIT NOT NULL,
-    FECHA_ORDEN                         DATETIME NOT NULL,
-    CONSTRAINT FK_ORDENES_CLIENTES FOREIGN KEY (ID_CLIENTE)
-        REFERENCES CLIENTES(ID_CLIENTE),
-    CONSTRAINT FK_ORDENES_DESCUENTOS FOREIGN KEY (ID_DESCUENTO)
-        REFERENCES DESCUENTOS(ID_DESCUENTO)
+CREATE TABLE Ordenes (
+    IdOrden                            BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdDescuento                        BIGINT NOT NULL,
+    IdCliente                          BIGINT NOT NULL,
+    Estado                             BIT NOT NULL,
+    FechaOrden                         DATETIME NOT NULL,
+    CONSTRAINT FkOrdenesClientes FOREIGN KEY (IdCliente)
+        REFERENCES Clientes(IdCliente),
+    CONSTRAINT FkOrdenesDescuentos FOREIGN KEY (IdDescuento)
+        REFERENCES Descuentos(IdDescuento)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA CATEGORIAS
+-- TABLA Categorias
 -------------------------------------------------------------------------
 
-CREATE TABLE CATEGORIAS (
-    ID_CATEGORIA                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ESTADO                              BIT NOT NULL,
-    NOMBRE_CATEGORIA                    VARCHAR(42) NOT NULL,
-    DESCRIPCION_CATEGORIA               VARCHAR(180) NOT NULL,
-    RUTA_IMAGEN                         VARCHAR(255) NULL
+CREATE TABLE Categorias (
+    IdCategoria                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    Estado                             BIT NOT NULL,
+    NombreCategoria                    VARCHAR(42) NOT NULL,
+    DescripcionCategoria               VARCHAR(180) NOT NULL,
+    RutaImagen                         VARCHAR(255) NULL
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA PRODUCTOS
+-- TABLA Productos
 -------------------------------------------------------------------------
 
-CREATE TABLE PRODUCTOS (
-    ID_PRODUCTO                         BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_CATEGORIA                        BIGINT NOT NULL,
-    ESTADO                              BIT NOT NULL,
-    NOMBRE_PRODUCTO                     VARCHAR(120) NOT NULL,
-    PRECIO_UNITARIO                     FLOAT NOT NULL,
-    COLOR                               VARCHAR(24) NOT NULL,
-    RUTA_IMAGEN                         VARCHAR(255) NULL,
-    CONSTRAINT FK_PRODUCTOS_CATEGORIAS FOREIGN KEY (ID_CATEGORIA)
-        REFERENCES CATEGORIAS(ID_CATEGORIA)
+CREATE TABLE Productos (
+    IdProducto                         BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdCategoria                        BIGINT NOT NULL,
+    Estado                             BIT NOT NULL,
+    NombreProducto                     VARCHAR(120) NOT NULL,
+    PrecioUnitario                     FLOAT NOT NULL,
+    Color                              VARCHAR(24) NOT NULL,
+    RutaImagen                         VARCHAR(255) NULL,
+    CONSTRAINT FkProductosCategorias FOREIGN KEY (IdCategoria)
+        REFERENCES Categorias(IdCategoria)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA DETALLES_ORDENES
+-- TABLA DetallesOrdenes
 -------------------------------------------------------------------------
 
-CREATE TABLE DETALLES_ORDENES (
-    ID_DETALLE_ORDEN                    BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_PRODUCTO                         BIGINT NOT NULL,
-    ID_ORDEN                            BIGINT NOT NULL,
-    TOTAL                               FLOAT NOT NULL,
-    SUB_TOTAL                           FLOAT NOT NULL,
-    CANTIDAD                            INT NOT NULL,
-    CONSTRAINT FK_DETALLES_ORDENES_ORDENES FOREIGN KEY (ID_ORDEN)
-        REFERENCES ORDENES(ID_ORDEN),
-    CONSTRAINT FK_DETALLES_ORDENES_PRODUCTOS FOREIGN KEY (ID_PRODUCTO)
-        REFERENCES PRODUCTOS(ID_PRODUCTO)
+CREATE TABLE DetallesOrdenes (
+    IdDetalleOrden                     BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdProducto                         BIGINT NOT NULL,
+    IdOrden                            BIGINT NOT NULL,
+    Total                              FLOAT NOT NULL,
+    SubTotal                           FLOAT NOT NULL,
+    Cantidad                           INT NOT NULL,
+    CONSTRAINT FkDetallesOrdenesOrdenes FOREIGN KEY (IdOrden)
+        REFERENCES Ordenes(IdOrden),
+    CONSTRAINT FkDetallesOrdenesProductos FOREIGN KEY (IdProducto)
+        REFERENCES Productos(IdProducto)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA PROVEEDORES
+-- TABLA Proveedores
 -------------------------------------------------------------------------
 
-CREATE TABLE PROVEEDORES (
-    ID_PROVEEDOR                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_DISTRITO                         BIGINT NOT NULL,
-    NOMBRE_PROVEEDOR                    VARCHAR(42) NOT NULL,
-    DESCRIPCION_PROVEEDOR               VARCHAR(180) NOT NULL,
-    TELEFONO                            VARCHAR(45) NOT NULL,
-    CORREO                              VARCHAR(180) NOT NULL,
-    RUTA_IMAGEN                         VARCHAR(255) NULL,
-    CONSTRAINT FK_PROVEEDORES_DISTRITOS FOREIGN KEY (ID_DISTRITO)
-        REFERENCES DISTRITOS(ID_DISTRITO)
+CREATE TABLE Proveedores (
+    IdProveedor                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdDistrito                         BIGINT NOT NULL,
+    NombreProveedor                    VARCHAR(42) NOT NULL,
+    DescripcionProveedor               VARCHAR(180) NOT NULL,
+    Telefono                           VARCHAR(45) NOT NULL,
+    Correo                             VARCHAR(180) NOT NULL,
+    RutaImagen                         VARCHAR(255) NULL,
+    CONSTRAINT FkProveedoresDistritos FOREIGN KEY (IdDistrito)
+        REFERENCES Distritos(IdDistrito)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA INVENTARIOS
+-- TABLA Inventarios
 -------------------------------------------------------------------------
 
-CREATE TABLE INVENTARIOS (
-    ID_INVENTARIO                       BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_PROVEEDOR                        BIGINT NOT NULL,
-    ID_PRODUCTO                         BIGINT NOT NULL,
-    STOCK                               INT NOT NULL,
-    CANTIDAD_INGRESADA                  INT NOT NULL,
-    FECHA_INGRESO                       DATETIME NOT NULL,
-    CONSTRAINT FK_INVENTARIOS_PRODUCTOS FOREIGN KEY (ID_PRODUCTO)
-        REFERENCES PRODUCTOS(ID_PRODUCTO),
-    CONSTRAINT FK_INVENTARIOS_PROVEEDORES FOREIGN KEY (ID_PROVEEDOR)
-        REFERENCES PROVEEDORES(ID_PROVEEDOR)
+CREATE TABLE Inventarios (
+    IdInventario                       BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdProveedor                        BIGINT NOT NULL,
+    IdProducto                         BIGINT NOT NULL,
+    Stock                              INT NOT NULL,
+    CantidadIngresada                  INT NOT NULL,
+    FechaIngreso                       DATETIME NOT NULL,
+    CONSTRAINT FkInventariosProductos FOREIGN KEY (IdProducto)
+        REFERENCES Productos(IdProducto),
+    CONSTRAINT FkInventariosProveedores FOREIGN KEY (IdProveedor)
+        REFERENCES Proveedores(IdProveedor)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA TIPOS_CREDENCIALES
+-- TABLA TiposCredenciales
 -------------------------------------------------------------------------
 
-CREATE TABLE TIPOS_CREDENCIALES (
-    ID_TIPO_CREDENCIAL                  BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ESTADO                              BIT NOT NULL,
-    NOMBRE_TIPO_CREDENCIAL              VARCHAR(42) NOT NULL,
-    DESCRIPCION_TIPO_CREDENCIAL         VARCHAR(180) NOT NULL,
-    RUTA_IMAGEN                         VARCHAR(255) NULL
+CREATE TABLE TiposCredenciales (
+    IdTipoCredencial                   BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    Estado                             BIT NOT NULL,
+    NombreTipoCredencial               VARCHAR(42) NOT NULL,
+    DescripcionTipoCredencial          VARCHAR(180) NOT NULL,
+    RutaImagen                         VARCHAR(255) NULL
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA EMPLEADOS
+-- TABLA Empleados
 -------------------------------------------------------------------------
 
-CREATE TABLE EMPLEADOS (
-    ID_EMPLEADO                         BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_DISTRITO                         BIGINT NOT NULL,
-    ESTADO                              BIT NOT NULL,
-    NOMBRE_EMPLEADO                     VARCHAR(120) NOT NULL,
-    APELLIDO_EMPLEADO                   VARCHAR(120) NOT NULL,
-    EDAD                                INT NOT NULL,
-    CORREO                              VARCHAR(180) NOT NULL,
-    IDENTIFICACION                      INT NOT NULL,
-    AUSENCIAS                           INT NOT NULL,
-    RUTA_IMAGEN                         VARCHAR(255) NULL,
-    CONSTRAINT FK_EMPLEADOS_DISTRITOS FOREIGN KEY (ID_DISTRITO)
-        REFERENCES DISTRITOS(ID_DISTRITO)
+CREATE TABLE Empleados (
+    IdEmpleado                         BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdDistrito                         BIGINT NOT NULL,
+    Estado                             BIT NOT NULL,
+    NombreEmpleado                     VARCHAR(120) NOT NULL,
+    ApellidoEmpleado                   VARCHAR(120) NOT NULL,
+    Edad                               INT NOT NULL,
+    Correo                             VARCHAR(180) NOT NULL,
+    Identificacion                     INT NOT NULL,
+    Ausencias                          INT NOT NULL,
+    RutaImagen                         VARCHAR(255) NULL,
+    CONSTRAINT FkEmpleadosDistritos FOREIGN KEY (IdDistrito)
+        REFERENCES Distritos(IdDistrito)
 );
 GO
 
-
 -------------------------------------------------------------------------
--- TABLA CREDENCIALES
+-- TABLA Credenciales
 -------------------------------------------------------------------------
 
-CREATE TABLE CREDENCIALES (
-    ID_CREDENCIAL                       BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    ID_EMPLEADO                         BIGINT NOT NULL,
-    ID_TIPO_CREDENCIAL                  BIGINT NOT NULL,
-    ESTADO                              BIT NOT NULL,
-    USUARIO                             VARCHAR(42) NOT NULL,
-    CLAVE                               VARCHAR(60) NOT NULL,
-    CONSTRAINT FK_CREDENCIALES_TIPOS_CREDENCIALES FOREIGN KEY (ID_TIPO_CREDENCIAL)
-        REFERENCES TIPOS_CREDENCIALES(ID_TIPO_CREDENCIAL),
-    CONSTRAINT FK_CREDENCIALES_EMPLEADOS FOREIGN KEY (ID_EMPLEADO)
-        REFERENCES EMPLEADOS(ID_EMPLEADO)
+CREATE TABLE Credenciales (
+    IdCredencial                       BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdEmpleado                         BIGINT NOT NULL,
+    IdTipoCredencial                   BIGINT NOT NULL,
+    Estado                             BIT NOT NULL,
+    Usuario                            VARCHAR(42) NOT NULL,
+    Clave                              VARCHAR(60) NOT NULL,
+    CONSTRAINT FkCredencialesTiposCredenciales FOREIGN KEY (IdTipoCredencial)
+        REFERENCES TiposCredenciales(IdTipoCredencial),
+    CONSTRAINT FkCredencialesEmpleados FOREIGN KEY (IdEmpleado)
+        REFERENCES Empleados(IdEmpleado)
 );
 GO
