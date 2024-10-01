@@ -6,28 +6,28 @@ GO
 -- PROCEDIMIENTOS ALMACENADOS DE UBICACIONES
 -------------------------------------------------------------------------
 
-CREATE PROCEDURE SP_GET_UBICACIONES
+CREATE PROCEDURE SP_Consultar_Ubicaciones
 AS
 BEGIN
     SELECT 	
-		P.ID_PROVINCIA,
-		P.NOMBRE_PROVINCIA,				
-		C.ID_CANTON,
-		C.NOMBRE_CANTON,
-		D.ID_DISTRITO,
-		D.NOMBRE_DISTRITO			
+        P.IdProvincia,
+        P.NombreProvincia,				
+        C.IdCanton,
+        C.NombreCanton,
+        D.IdDistrito,
+        D.NombreDistrito			
     FROM 
-        PROVINCIAS P
+        Provincias P
     LEFT JOIN 
-        CANTONES C
-			ON P.ID_PROVINCIA = C.ID_PROVINCIA
+        Cantones C
+            ON P.IdProvincia = C.IdProvincia
     LEFT JOIN 
-        DISTRITOS D
-			ON C.ID_CANTON = D.ID_CANTON
+        Distritos D
+            ON C.IdCanton = D.IdCanton
     ORDER BY 
-        P.ID_PROVINCIA, 
-        C.ID_CANTON, 
-        D.ID_DISTRITO;
+        P.IdProvincia, 
+        C.IdCanton, 
+        D.IdDistrito;
 END;
 GO
 
@@ -35,102 +35,102 @@ GO
 -- PROCEDIMIENTOS ALMACENADOS DE EMPLEADOS
 -------------------------------------------------------------------------
 
-CREATE PROCEDURE SP_GET_EMPLEADOS	
+CREATE PROCEDURE SP_Consultar_Empleados	
 AS
 BEGIN	
-	SELECT	
-		E.ID_EMPLEADO,
-		E.IDENTIFICACION,
-		E.NOMBRE_EMPLEADO,
-		E.APELLIDO_EMPLEADO,
-		E.EDAD,
-		E.CORREO,
-		D.ID_DISTRITO,
-		D.NOMBRE_DISTRITO
-	FROM	
-		EMPLEADOS E
-	INNER JOIN
-		DISTRITOS D
-			ON E.ID_DISTRITO = D.ID_DISTRITO;
+    SELECT	
+        E.IdEmpleado,
+        E.Identificacion,
+        E.NombreEmpleado,
+        E.ApellidoEmpleado,
+        E.Edad,
+        E.Correo,
+        D.IdDistrito,
+        D.NombreDistrito
+    FROM	
+        Empleados E
+    INNER JOIN
+        Distritos D
+            ON E.IdDistrito = D.IdDistrito;
 END;
 GO
 
-CREATE PROCEDURE SP_INSERT_EMPLEADOS
-	@ID_DISTRITO				BIGINT,
-	@ESTADO						BIT,
-	@NOMBRE_EMPLEADO			VARCHAR(120),
-	@APELLIDO_EMPLEADO			VARCHAR(120),
-	@EDAD						INT,
-	@CORREO						VARCHAR(180),
-	@IDENTIFICACION				INT
+CREATE PROCEDURE SP_Insertar_Empleados
+    @IdDistrito                BIGINT,
+    @Estado                    BIT,
+    @NombreEmpleado            VARCHAR(120),
+    @ApellidoEmpleado          VARCHAR(120),
+    @Edad                      INT,
+    @Correo                    VARCHAR(180),
+    @Identificacion            INT
 AS
 BEGIN	
-	IF NOT EXISTS(SELECT 1 FROM EMPLEADOS WHERE IDENTIFICACION = @IDENTIFICACION)
-	BEGIN
-		INSERT INTO EMPLEADOS
-		(
-			ID_DISTRITO,
-			ESTADO,
-			NOMBRE_EMPLEADO,
-			APELLIDO_EMPLEADO,
-			EDAD,
-			CORREO,
-			IDENTIFICACION,
-			AUSENCIAS
-		)
-		VALUES 
-		(
-			@ID_DISTRITO,
-			@ESTADO,
-			@NOMBRE_EMPLEADO,
-			@APELLIDO_EMPLEADO,
-			@EDAD,
-			@CORREO,
-			@IDENTIFICACION,
-			0
-		)
-	END
+    IF NOT EXISTS(SELECT 1 FROM Empleados WHERE Identificacion = @Identificacion)
+    BEGIN
+        INSERT INTO Empleados
+        (
+            IdDistrito,
+            Estado,
+            NombreEmpleado,
+            ApellidoEmpleado,
+            Edad,
+            Correo,
+            Identificacion,
+            Ausencias
+        )
+        VALUES 
+        (
+            @IdDistrito,
+            @Estado,
+            @NombreEmpleado,
+            @ApellidoEmpleado,
+            @Edad,
+            @Correo,
+            @Identificacion,
+            0
+        )
+    END
 END;
 GO
 
 -------------------------------------------------------------------------
--- PROCEDIMIENTOS ALMACENADOS DE TIPOS_CREDENCIALES
+-- PROCEDIMIENTOS ALMACENADOS DE TIPOS CREDENCIALES
 -------------------------------------------------------------------------
 
-CREATE PROCEDURE SP_GET_TIPOS_CREDENCIALES	
+CREATE PROCEDURE SP_Consultar_TiposCredenciales	
 AS
 BEGIN	
-	SELECT	
-		ID_TIPO_CREDENCIAL,
-		NOMBRE_TIPO_CREDENCIAL,
-		DESCRIPCION_TIPO_CREDENCIAL,
-		ESTADO
-	FROM	
-		TIPOS_CREDENCIALES;
+    SELECT	
+        IdTipoCredencial,
+        NombreTipoCredencial,
+        DescripcionTipoCredencial,
+        Estado
+    FROM	
+        TiposCredenciales;
 END;
 GO
 
-CREATE PROCEDURE SP_INSERT_TIPOS_CREDENCIALES
-	@ESTADO                              BIT,
-	@NOMBRE_TIPO_CREDENCIAL              VARCHAR(42),
-	@DESCRIPCION_TIPO_CREDENCIAL         VARCHAR(180)
+CREATE PROCEDURE SP_Insertar_TiposCredenciales
+    @Estado                    BIT,
+    @NombreTipoCredencial      VARCHAR(42),
+    @DescripcionTipoCredencial VARCHAR(180)
 AS
 BEGIN	
-	IF NOT EXISTS(SELECT 1 FROM TIPOS_CREDENCIALES WHERE NOMBRE_TIPO_CREDENCIAL = @NOMBRE_TIPO_CREDENCIAL)
-	BEGIN
-		INSERT INTO TIPOS_CREDENCIALES
-		(        
-			ESTADO,                     
-			NOMBRE_TIPO_CREDENCIAL,     
-			DESCRIPCION_TIPO_CREDENCIAL			
-		)
-		VALUES 
-		(
-			@ESTADO,                     
-			@NOMBRE_TIPO_CREDENCIAL,     
-			@DESCRIPCION_TIPO_CREDENCIAL
-		)
-	END
+    IF NOT EXISTS(SELECT 1 FROM TiposCredenciales WHERE NombreTipoCredencial = @NombreTipoCredencial)
+    BEGIN
+        INSERT INTO TiposCredenciales
+        (        
+            Estado,                     
+            NombreTipoCredencial,     
+            DescripcionTipoCredencial			
+        )
+        VALUES
+        (
+            @Estado,                     
+            @NombreTipoCredencial,     
+            @DescripcionTipoCredencial
+        )
+    END
 END;
 GO
 
@@ -138,64 +138,58 @@ GO
 -- PROCEDIMIENTOS ALMACENADOS DE CREDENCIALES
 -------------------------------------------------------------------------
 
-CREATE PROCEDURE SP_GET_USUARIOS
+CREATE PROCEDURE SP_Consultar_Credenciales
 AS
 BEGIN	
-	SELECT	
-		E.ID_EMPLEADO,
-		E.IDENTIFICACION,
-		E.NOMBRE_EMPLEADO,
-		E.APELLIDO_EMPLEADO,
-		T.ID_TIPO_CREDENCIAL,
-		T.NOMBRE_TIPO_CREDENCIAL,
-		C.ID_CREDENCIAL,
-		C.ESTADO   
-	FROM             	
-		CREDENCIALES C
-	INNER JOIN
-		TIPOS_CREDENCIALES T
-			ON C.ID_TIPO_CREDENCIAL = T.ID_TIPO_CREDENCIAL
-	INNER JOIN
-		EMPLEADOS E
-			ON C.ID_EMPLEADO = E.ID_EMPLEADO
-	INNER JOIN
-		DISTRITOS D
-			ON E.ID_DISTRITO = D.ID_DISTRITO
+    SELECT	
+        E.IdEmpleado,
+        E.Identificacion,
+        E.NombreEmpleado,
+        E.ApellidoEmpleado,
+        T.IdTipoCredencial,
+        T.NombreTipoCredencial,
+        C.IdCredencial,
+        C.Estado   
+    FROM             	
+        Credenciales C
+    INNER JOIN
+        TiposCredenciales T
+            ON C.IdTipoCredencial = T.IdTipoCredencial
+    INNER JOIN
+        Empleados E
+            ON C.IdEmpleado = E.IdEmpleado
+    INNER JOIN
+        Distritos D
+            ON E.IdDistrito = D.IdDistrito;
 END;
 GO
 
-CREATE PROCEDURE SP_INSERT_CREDENCIALES
-	@ID_EMPLEADO                         BIGINT,
-	@ID_TIPO_CREDENCIAL                  BIGINT,
-	@ESTADO                              BIT,
-	@USUARIO                             VARCHAR(42),
-	@CLAVE                               VARCHAR(60)
+CREATE PROCEDURE SP_Insertar_Credenciales
+    @IdEmpleado              BIGINT,
+    @IdTipoCredencial        BIGINT,
+    @Estado                  BIT,
+    @Usuario                 VARCHAR(42),
+    @Clave                   VARCHAR(60)
 AS
 BEGIN	
-	IF NOT EXISTS(SELECT 1 FROM CREDENCIALES WHERE ID_EMPLEADO = @ID_EMPLEADO)
-	BEGIN
-		INSERT INTO CREDENCIALES
-		(        
-			ID_EMPLEADO,    
-			ID_TIPO_CREDENCIAL, 
-			ESTADO,         
-			USUARIO,
-			CLAVE  
-		)
-		VALUES 
-		(
-			@ID_EMPLEADO,        
-			@ID_TIPO_CREDENCIAL, 
-			@ESTADO,
-			@USUARIO,
-			@CLAVE
-		)
-	END
+    IF NOT EXISTS(SELECT 1 FROM Credenciales WHERE IdEmpleado = @IdEmpleado)
+    BEGIN
+        INSERT INTO Credenciales
+        (        
+            IdEmpleado,    
+            IdTipoCredencial, 
+            Estado,         
+            Usuario,
+            Clave  
+        )
+        VALUES 
+        (
+            @IdEmpleado,        
+            @IdTipoCredencial, 
+            @Estado,
+            @Usuario,
+            @Clave
+        )
+    END
 END;
 GO
-
--------------------------------------------------------------------------
--- PROCEDIMIENTOS ALMACENADOS DE PROVEEDORES
--------------------------------------------------------------------------
-
--->

@@ -8,10 +8,10 @@ GO
 -- INSERTAR DATOS EN LA TABLA PROVINCIAS
 -------------------------------------------------------------------------
 
-INSERT INTO PROVINCIAS 
+INSERT INTO Provincias 
 (
-	ID_PROVINCIA, 
-	NOMBRE_PROVINCIA
+	IdProvincia, 
+	NombreProvincia
 ) 
 VALUES 
 	(1, 'San José'),
@@ -29,11 +29,11 @@ GO
 -- INSERTAR DATOS EN LA TABLA CANTONES
 -------------------------------------------------------------------------
 
-INSERT INTO CANTONES 
+INSERT INTO Cantones 
 (
-	ID_CANTON, 
-	ID_PROVINCIA,
-	NOMBRE_CANTON
+	IdCanton, 
+	IdProvincia,
+	NombreCanton
 ) 
 VALUES 
 	(101, 1, 'San José'),
@@ -125,11 +125,11 @@ GO
 -- INSERTAR DATOS EN LA TABLA DISTRITOS
 -------------------------------------------------------------------------
 
-INSERT INTO DISTRITOS 
+INSERT INTO Distritos 
 (
-	ID_DISTRITO, 
-	ID_CANTON, 
-	NOMBRE_DISTRITO
+	IdDistrito, 
+	IdCanton, 
+	NombreDistrito
 ) 
 VALUES 
 	(10101, 101, 'Carmen'),

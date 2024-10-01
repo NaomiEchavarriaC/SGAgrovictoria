@@ -1,0 +1,55 @@
+﻿@model List<SGAgrovictoriaWEB.Entities.Credencial>
+
+@{
+    ViewData["Title"] = "ConsultarCredenciales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center mt-5 mb-3">
+    <h1>Lista de Usuarios</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+        <table id="Tabla" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Identificación</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Rol</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Identificacion</td>
+                        <td>@item.NombreEmpleado</td>
+                        <td>@item.ApellidoEmpleado</td>
+                        <td>@item.NombreTipoCredencial</td>
+                        <td><a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1">
+    </div>
+
+
+    <div class="col-2 mx-auto justify-content-center align-items-center mt-2">
+        <a href="@Url.Action("AgregarUsuario", "Usuario")" class="btn btn-block btn-primary mb-4">Agregar Usuario</a>
+    </div>
+
+</div>
+
+
+
+<script src="~/page/vendor/jquery/jquery.js"></script>
+<script src="~/page/js/DataTable.js"></script>
