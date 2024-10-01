@@ -193,3 +193,26 @@ BEGIN
     END
 END;
 GO
+
+-------------------------------------------------------------------------
+-- PROCEDIMIENTOS ALMACENADOS DE CREDENCIALES
+-------------------------------------------------------------------------
+
+CREATE PROCEDURE SP_Consultar_Proveedores
+AS
+BEGIN	
+    SELECT	
+        P.IdProveedor,
+        P.NombreProveedor,
+        P.Telefono,
+        P.Correo,
+		P.Estado
+        D.IdDistrito,
+        D.NombreDistrito        
+    FROM             	
+        Proveedores P
+    INNER JOIN
+        Distritos D
+            ON P.IdDistrito = D.IdDistrito;
+END;
+GO

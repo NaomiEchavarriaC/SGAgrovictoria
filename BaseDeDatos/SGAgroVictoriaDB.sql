@@ -150,6 +150,7 @@ GO
 CREATE TABLE Proveedores (
     IdProveedor                        BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     IdDistrito                         BIGINT NOT NULL,
+	Estado                             BIT NOT NULL,
     NombreProveedor                    VARCHAR(42) NOT NULL,
     DescripcionProveedor               VARCHAR(180) NOT NULL,
     Telefono                           VARCHAR(45) NOT NULL,
