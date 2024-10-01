@@ -20,8 +20,9 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Rol</th>
+                    <th>Estado</th>
                     <th>Actualizar</th>
-                    <th>Eliminar</th>
+                    <th>Deshabilitar</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +33,15 @@
                         <td>@item.NombreEmpleado</td>
                         <td>@item.ApellidoEmpleado</td>
                         <td>@item.NombreTipoCredencial</td>
-                        <td><a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                        <td><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+                        <td>@item.Estado</td>
+                        <td>
+                            <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("ActualizarEstadoCredencial", "Credencial", new { idCredencial = item.IdCredencial })">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>
