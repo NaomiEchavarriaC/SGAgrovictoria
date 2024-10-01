@@ -20,5 +20,19 @@ namespace SGAgrovictoriaWEB.Controllers
             ViewBag.Alerta = respuesta.Mensaje;
             return View(respuesta.Contenido);
         }
+
+        [HttpGet]
+        public IActionResult ActualizarEstadoCredencial(int idCredencial)
+        {
+            var respuesta = iCredencialModel.ActualizarEstadoCredencial(idCredencial);
+
+            if (respuesta.Codigo == 1)
+            {
+                return RedirectToAction("ConsultarCredenciales", "Credencial");
+            }
+
+            ViewBag.Alerta = respuesta.Mensaje;
+            return View();
+        }
     }
 }

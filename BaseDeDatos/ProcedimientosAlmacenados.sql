@@ -104,7 +104,7 @@ BEGIN
         IdTipoCredencial,
         NombreTipoCredencial,
         DescripcionTipoCredencial,
-        Estado
+        CASE WHEN Estado = 1 THEN 'Activo' ELSE 'Inactivo' END 'Estado' 
     FROM	
         TiposCredenciales;
 END;
@@ -149,7 +149,7 @@ BEGIN
         T.IdTipoCredencial,
         T.NombreTipoCredencial,
         C.IdCredencial,
-        C.Estado   
+        CASE WHEN C.Estado = 1 THEN 'Activo' ELSE 'Inactivo' END 'Estado' 
     FROM             	
         Credenciales C
     INNER JOIN
@@ -194,8 +194,21 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE SP_Actualizar_EstadoCredencial
+@IdCredencial					BIGINT
+AS
+BEGIN	
+	UPDATE Credenciales
+	SET Estado = CASE WHEN Estado = 1 
+				 THEN 0 
+				 ELSE 1 
+	END
+	WHERE IdCredencial = @IdCredencial
+END;
+GO
+
 -------------------------------------------------------------------------
--- PROCEDIMIENTOS ALMACENADOS DE CREDENCIALES
+-- PROCEDIMIENTOS ALMACENADOS DE PROVEEDORES
 -------------------------------------------------------------------------
 
 CREATE PROCEDURE SP_Consultar_Proveedores
@@ -206,7 +219,7 @@ BEGIN
         P.NombreProveedor,
         P.Telefono,
         P.Correo,
-		P.Estado
+		CASE WHEN P.Estado = 1 THEN 'Activo' ELSE 'Inactivo' END 'Estado',
         D.IdDistrito,
         D.NombreDistrito        
     FROM             	
@@ -214,5 +227,18 @@ BEGIN
     INNER JOIN
         Distritos D
             ON P.IdDistrito = D.IdDistrito;
+END;
+GO
+
+CREATE PROCEDURE SP_Actualizar_EstadoProveedor
+@IdProveedor					BIGINT
+AS
+BEGIN	
+	UPDATE Proveedores
+	SET Estado = CASE WHEN Estado = 1 
+				 THEN 0 
+				 ELSE 1 
+	END
+	WHERE IdProveedor = @IdProveedor
 END;
 GO

@@ -33,5 +33,32 @@ namespace SGAgrovictoriaWEB.Models
                 }
             }
         }
+
+        public Respuesta ActualizarEstadoProveedor(int idProveedor)
+        {
+            Respuesta respuesta = new Respuesta();
+
+            using (var db = new SqlConnection(iConfiguration.GetSection("ConnectionStrings:DefaultConnection").Value))
+            {
+                var resultado = db.Execute("SP_Actualizar_EstadoProveedor",
+                                            new { idProveedor },
+                                            commandType: System.Data.CommandType.StoredProcedure);
+
+                if (resultado > 0)
+                {
+                    respuesta.Codigo = 1;
+                    respuesta.Mensaje = "OK";
+                    respuesta.Contenido = true;
+                    return respuesta;
+                }
+                else
+                {
+                    respuesta.Codigo = 0;
+                    respuesta.Mensaje = "El estado del proveedor no se pudo actualizar";
+                    respuesta.Contenido = false;
+                    return respuesta;
+                }
+            }
+        }
     }
 }

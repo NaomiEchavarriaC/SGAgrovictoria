@@ -9,7 +9,7 @@
         public long? IdTipoCredencial { get; set; }
         public string? NombreTipoCredencial { get; set; }
         public long? IdCredencial { get; set; }
-        public bool? Estado { get; set; }
+        public string? Estado { get; set; }
         public string? Usuario { get; set; }
         public string? Clave { get; set; }
     }
