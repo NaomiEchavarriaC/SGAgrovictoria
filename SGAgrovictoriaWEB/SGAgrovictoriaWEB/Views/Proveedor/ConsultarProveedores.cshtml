@@ -16,6 +16,7 @@
         <table id="Tabla" class="table table-hover">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Nombre</th>
                     <th>Telefono</th>
                     <th>Correo</th>
@@ -29,6 +30,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>@item.IdProveedor</td>
                         <td>@item.NombreProveedor</td>
                         <td>@item.Telefono</td>
                         <td>@item.Correo</td>
