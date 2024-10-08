@@ -1,4 +1,9 @@
-﻿@model List<SGAgrovictoriaWEB.Entities.Proveedor>
+﻿
+
+
+@model List<ProveedorModel>
+
+
 
 @{
     ViewData["Title"] = "Consultar Proveedores";
@@ -20,40 +25,71 @@
                     <th>Nombre</th>
                     <th>Telefono</th>
                     <th>Correo</th>
-                    <th>Ubicacion</th>
+                    <th>Ubicación</th>
                     <th>Estado</th>
                     <th>Actualizar</th>
+                    <th>Detalles</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+
+                @if (Model.Any())
                 {
+                    @foreach (var proveedor in Model)
+                    {
+                       
+                        <tr>
+                            <td>@proveedor.IdProveedor</td>
+                            <td>@proveedor.NombreProveedor</td>
+                            <td>@proveedor.Telefono</td>
+                            <td>@proveedor.Correo</td>
+                            <td>@proveedor.IdDistrito</td>
+                            
+                                @if(@proveedor.Estado.Equals(true))
+                                {
+                                    <td>Activo</td>
+                                }
+                                else
+                                {
+                                    <td>Inactivo</td>
+                                }
+                            
+
+                            <td>
+                                 <a href="@Url.Action("EditarProveedor", new { Id = proveedor.IdProveedor })" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>
+                            <td>
+                                                                <a href="@Url.Action("ConsultarProveedor", new { Id = proveedor.IdProveedor })" class="btn btn-sm btn-info"><i class="fa-solid fa-question-circle"></i></a>
+
+                            </td>
+                            <td>
+                                                                <a href="@Url.Action("EliminarProveedor", new { Id = proveedor.IdProveedor })" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+
+                            </td>
+                        </tr>
+                        
+                        
+                    }
+                }
+                else
+                {
+
                     <tr>
-                        <td>@item.IdProveedor</td>
-                        <td>@item.NombreProveedor</td>
-                        <td>@item.Telefono</td>
-                        <td>@item.Correo</td>
-                        <td>@item.NombreDistrito</td>
-                        <td>@item.Estado</td>
-                        <td><a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                        <td>
-                            <a href="@Url.Action("ActualizarEstadoProveedor", "Proveedor", new { idProveedor = item.IdProveedor })">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </a>
-                        </td>
+                        <td colspan="5" class="text-center">No hay proveedores disponibles.</td>
                     </tr>
                 }
             </tbody>
         </table>
+         <div class="text-center">
+        <a href="@Url.Action("AgregarProveedor")" class="btn btn-block btn-primary mb-4">Agregar Proveedor</a>
+    </div>
     </div>
     <div class="col-md-1">
     </div>
 
 
-    <div class="col-3 mx-auto justify-content-center align-items-center mt-2">
-        <a href="#" class="btn btn-block btn-primary mb-4">Agregar Proveedor</a>
-    </div>
+   
 
 </div>
 

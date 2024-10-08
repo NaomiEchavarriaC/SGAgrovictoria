@@ -9,6 +9,7 @@ namespace SGAgrovictoriaWEB.Models
 {
     public class CredencialModel(IConfiguration iConfiguration) : ICredencialModel
     {
+        
         public Respuesta ConsultarCredenciales()
         {
             Respuesta respuesta = new Respuesta();
@@ -60,5 +61,8 @@ namespace SGAgrovictoriaWEB.Models
                 }
             }
         }
+        
+
+
     }
 }
