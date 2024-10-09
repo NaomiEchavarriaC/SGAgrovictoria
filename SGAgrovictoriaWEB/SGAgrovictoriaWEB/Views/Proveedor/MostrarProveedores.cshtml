@@ -1,0 +1,52 @@
+﻿@model List<ProveedorModel>
+
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Lista de Proveedores</h1>
+        <p class="lead text-muted">Administra todos los proveedores desde aquí.</p>
+    </div>
+
+    <div class="table-responsive shadow-sm mb-4">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var proveedor in Model)
+                    {
+                        <tr>
+                            <td>@proveedor.IdProveedor</td>
+                            <td>@proveedor.NombreProveedor</td>
+                            <td>@proveedor.Telefono</td>
+                            <td>@proveedor.Correo</td>
+                            <td>
+                                <a href="@Url.Action("EditarProveedor", new { Id = proveedor.IdProveedor })" class="btn btn-sm btn-primary">Editar</a>
+                                <a href="@Url.Action("ConsultarProveedor", new { Id = proveedor.IdProveedor })" class="btn btn-sm btn-info">Detalles</a>
+                                <a href="@Url.Action("EliminarProveedor", new { Id = proveedor.IdProveedor })" class="btn btn-sm btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">No hay proveedores disponibles.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <a href="@Url.Action("AgregarProveedor")" class="btn btn-success btn-lg mt-3">Crear Nuevo Proveedor</a>
+    </div>
+</div>
+

@@ -1,0 +1,40 @@
+﻿@model ProveedorModel
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Detalles del Proveedor</h1>
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Información del Proveedor</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row" style="font-size: 20px;">
+                <dt class="col-sm-3">Nombre</dt>
+                <dd class="col-sm-9">@Model.NombreProveedor</dd>
+
+                <dt class="col-sm-3">Descripción</dt>
+                <dd class="col-sm-9">@Model.DescripcionProveedor</dd>
+
+                <dt class="col-sm-3">Teléfono</dt>
+                <dd class="col-sm-9">@Model.Telefono</dd>
+
+                <dt class="col-sm-3">Correo</dt>
+                <dd class="col-sm-9">@Model.Correo</dd>
+
+                <dt class="col-sm-3">Estado</dt>
+                <dd class="col-sm-9">@Model.Estado</dd>
+
+                <dt class="col-sm-3">Ruta de Imagen</dt>
+                <dd class="col-sm-9">@Model.RutaImagen</dd>
+
+                <dt class="col-sm-3">Distrito</dt>
+                <dd class="col-sm-9">@Model.IdDistrito</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="EditarProveedor" asp-route-id="@Model.IdProveedor" class="btn btn-primary mb-4">Editar</a>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="ConsultarProveedores" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</div>
