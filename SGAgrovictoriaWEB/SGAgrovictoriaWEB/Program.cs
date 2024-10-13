@@ -3,6 +3,7 @@ using SGAgrovictoriaWEB.Interfaces;
 using SGAgrovictoriaWEB.Models;
 using System;
 using SGAgrovictoriaWEB.Data;
+using Microsoft.Extensions.Options;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,7 @@ builder.Services.AddScoped<ICredencialModel, CredencialModel>();
 
 //Ingresar nombre de la instancia
 
-var connectionString = builder.Configuration.GetConnectionString("server=DESKTOP-1MDIGEP\\MSSQLSERVER01;Database=SGAgroVictoriaDB;Trusted_Connection=True;TrustServerCertificate=True");
+var connectionString = builder.Configuration.GetConnectionString("\"Server=LAPTOP-N7ICFRA9\\\\SSQLSERVER;Database=SGAgroVictoriaDB;Trusted_Connection=True;TrustServerCertificate=True\"");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 

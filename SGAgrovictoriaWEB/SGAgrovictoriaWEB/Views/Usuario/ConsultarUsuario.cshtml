@@ -1,0 +1,45 @@
+﻿@model UsuarioModel
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Detalles del Proveedor</h1>
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Información del usuario</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row" style="font-size: 20px;">
+                <dt class="col-sm-3">Id credencial</dt>
+                <dd class="col-sm-9">@Model.IdCredencial</dd>
+
+                <dt class="col-sm-3">Id empleado</dt>
+                <dd class="col-sm-9">@Model.IdEmpleado</dd>
+
+                <dt class="col-sm-3">Id tipo credencial</dt>
+                <dd class="col-sm-9">@Model.IdTipoCredencial</dd>
+
+                <dt class="col-sm-3">Estado</dt>
+                @if (Model.Estado.Equals(true))
+                {
+                    <dd class="col-sm-9">Activo</dd>
+                }
+                else
+                {
+                    <dd class="col-sm-9">Inactivo</dd>
+                }
+              
+
+                <dt class="col-sm-3">Usuario</dt>
+                <dd class="col-sm-9">@Model.Usuario</dd>
+
+                <dt class="col-sm-3">Clave</dt>
+                <dd class="col-sm-9">@Model.Clave</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="EditarUsuario" asp-route-id="@Model.IdCredencial" class="btn btn-primary mb-4">Editar</a>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="ConsultarUsuarios" class="btn btn-secondary">Volver a la lista de usuarios</a>
+        </div>
+    </div>
+</div>

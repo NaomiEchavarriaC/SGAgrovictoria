@@ -21,7 +21,14 @@
                 <dd class="col-sm-9">@Model.Correo</dd>
 
                 <dt class="col-sm-3">Estado</dt>
-                <dd class="col-sm-9">@Model.Estado</dd>
+                @if (Model.Estado.Equals(true))
+                {
+                    <dd class="col-sm-9">Activo</dd>
+                }
+                else
+                {
+                    <dd class="col-sm-9">Inactivo</dd>
+                }
 
                 <dt class="col-sm-3">Ruta de Imagen</dt>
                 <dd class="col-sm-9">@Model.RutaImagen</dd>

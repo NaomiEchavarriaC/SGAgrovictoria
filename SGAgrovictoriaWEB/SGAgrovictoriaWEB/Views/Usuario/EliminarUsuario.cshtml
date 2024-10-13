@@ -1,0 +1,30 @@
+﻿@model UsuarioModel
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Eliminar usuario</h1>
+
+    <div class="alert alert-danger text-center" role="alert">
+        <h3>¡Atención!</h3>
+        <p>Está a punto de eliminar este usuario. Esta acción no se puede deshacer.</p>
+    </div>
+
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Detalles del usuario</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Nombre de usuario</dt>
+                <dd class="col-sm-9">@Model.Usuario</dd>
+                <dt class="col-sm-3">Id empleado</dt>
+                <dd class="col-sm-9">@Model.IdEmpleado</dd>
+            </dl>
+        </div>
+    </div>
+
+    <form asp-action="ConfirmarBorrado" class="text-center">
+        <input type="hidden" asp-for="IdCredencial" />
+        <button type="submit" class="btn btn-danger btn-lg mr-3">Eliminar Usuario</button>
+        <a asp-action="ConsultarUsuarios" class="btn btn-secondary btn-lg">Volver a la lista</a>
+    </form>
+</div>
