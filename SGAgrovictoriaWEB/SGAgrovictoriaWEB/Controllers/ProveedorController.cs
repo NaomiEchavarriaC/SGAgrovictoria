@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using SGAgrovictoriaWEB.Data;
 using SGAgrovictoriaWEB.Models;
+using SGAgrovictoriaWEB.Permisos;
 
 namespace SGAgrovictoriaWEB.Controllers
 {
-
-    public class ProveedorController : Controller
+    //Variable de sesión para evitar accesos no deseados
+	[ServiceFilter(typeof(ValidarSesionAttribute))]
+	public class ProveedorController : Controller
     {
         //Logica del crud dentro de .net
 

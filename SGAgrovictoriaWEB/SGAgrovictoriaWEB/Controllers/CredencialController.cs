@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SGAgrovictoriaWEB.Entities;
 using SGAgrovictoriaWEB.Interfaces;
+using SGAgrovictoriaWEB.Permisos;
 using System.Text.Json;
 
 namespace SGAgrovictoriaWEB.Controllers
 {
-    public class CredencialController(ICredencialModel iCredencialModel) : Controller
+	[ServiceFilter(typeof(ValidarSesionAttribute))]
+	public class CredencialController(ICredencialModel iCredencialModel) : Controller
     {
         [HttpGet]
         public IActionResult ConsultarCredenciales()

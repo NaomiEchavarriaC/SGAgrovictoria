@@ -21,4 +21,7 @@ namespace SGAgrovictoriaWEB.Models
         public string Clave { get; set; }
 
     }
+
+
 }
+

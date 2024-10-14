@@ -4,6 +4,7 @@ using SGAgrovictoriaWEB.Models;
 using System;
 using SGAgrovictoriaWEB.Data;
 using Microsoft.Extensions.Options;
+using SGAgrovictoriaWEB.Permisos;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICredencialModel, CredencialModel>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ValidarSesionAttribute>(); // Registrar el filtro
+
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout = TimeSpan.FromMinutes(30); // Tiempo de inactividad
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true; // Para cumplir con el GDPR si es necesario
+});
+builder.Services.AddSession();
+
 //builder.Services.AddScoped<IProveedorModel, ProveedorModel>();
 
 
@@ -21,7 +33,10 @@ var connectionString = builder.Configuration.GetConnectionString("\"Server=LAPTO
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 
-var app = builder.Build();
+var app = builder.Build(); 
+app.UseSession();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -33,13 +48,14 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
 
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Inicio}/{action=InicioSesion}/{id?}");
+    pattern: "{controller=Acceso}/{action=Login}");
 
 app.Run();

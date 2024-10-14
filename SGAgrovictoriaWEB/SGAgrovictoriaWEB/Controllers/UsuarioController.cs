@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using SGAgrovictoriaWEB.Data;
 using SGAgrovictoriaWEB.Models;
 using Microsoft.AspNetCore.Mvc;
+using SGAgrovictoriaWEB.Permisos;
 
 namespace SGAgrovictoriaWEB.Controllers
 {
-    public class UsuarioController : Controller
+	[ServiceFilter(typeof(ValidarSesionAttribute))]
+	public class UsuarioController : Controller
     {
         private readonly AppDbContext _context;
         private readonly ILogger<UsuarioController> _logger;
@@ -39,7 +41,22 @@ namespace SGAgrovictoriaWEB.Controllers
         }
         return View(usuario);
     }
+		[HttpPost]
+		public async Task<IActionResult> Login(UsuarioModel credencial)
+        {
+           
+            var usuario = await _context.Credenciales.FirstOrDefaultAsync(m => m.Usuario == credencial.Usuario && m.Clave==credencial.Clave);
 
+            if (usuario == null)
+            {
+                ViewData["Mensaje"] = "Usuario no encontrado";
+                return View();
+            }
+            else
+            {
+				return RedirectToAction("PantallaPrincipal", "Inicio");
+			}
+		}
         //get: Proveedor/create
         public IActionResult AgregarUsuario()
         {
