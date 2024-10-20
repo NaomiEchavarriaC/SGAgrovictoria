@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using SGAgrovictoriaWEB.Interfaces;
 using SGAgrovictoriaWEB.Models;
 using System;
 using SGAgrovictoriaWEB.Data;
@@ -12,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+<<<<<<< Updated upstream
 builder.Services.AddScoped<ICredencialModel, CredencialModel>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ValidarSesionAttribute>(); // Registrar el filtro
@@ -23,13 +23,15 @@ builder.Services.AddSession(options =>
 	options.Cookie.IsEssential = true; // Para cumplir con el GDPR si es necesario
 });
 builder.Services.AddSession();
+=======
+>>>>>>> Stashed changes
 
 //builder.Services.AddScoped<IProveedorModel, ProveedorModel>();
 
 
 //Ingresar nombre de la instancia
 
-var connectionString = builder.Configuration.GetConnectionString("\"Server=LAPTOP-N7ICFRA9\\\\SSQLSERVER;Database=SGAgroVictoriaDB;Trusted_Connection=True;TrustServerCertificate=True\"");
+var connectionString = builder.Configuration.GetConnectionString("\"Server=DESKTOP-1MDIGEP\\MSSQLSERVER01;Database=SGAgroVictoriaDB;Trusted_Connection=True;TrustServerCertificate=True\"");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 

@@ -14,7 +14,10 @@ namespace SGAgrovictoriaWEB.Data
         }
 
         public DbSet<ProveedorModel> Proveedores { get; set; }
-          public DbSet<UsuarioModel> Credenciales { get; set; }
+        public DbSet<UsuarioModel> Credenciales { get; set; }
+
+        public DbSet<InventarioModel> Productos { get; set; }
+
 
         /*
          Se debe insertar la siguiente linea de codigo en caso de agregar un nuevo modelo
@@ -29,7 +32,7 @@ namespace SGAgrovictoriaWEB.Data
 
             //Ingresar nombre de la instancia
 
-            optionsBuilder.UseSqlServer("Server=LAPTOP-N7ICFRA9\\SSQLSERVER;Database=SGAgroVictoriaDB;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-1MDIGEP\\MSSQLSERVER01;Database=SGAgroVictoriaDB;Trusted_Connection=True;TrustServerCertificate=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,9 +1,7 @@
 ﻿
-using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using SGAgrovictoriaWEB.Entities;
-using SGAgrovictoriaWEB.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 namespace SGAgrovictoriaWEB.Models
