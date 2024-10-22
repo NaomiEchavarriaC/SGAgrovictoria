@@ -2,8 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using SGAgrovictoriaWEB.Data;
 using SGAgrovictoriaWEB.Models;
+<<<<<<< Updated upstream
 using Microsoft.AspNetCore.Mvc;
 using SGAgrovictoriaWEB.Permisos;
+=======
+>>>>>>> Stashed changes
 
 namespace SGAgrovictoriaWEB.Controllers
 {

@@ -1,0 +1,129 @@
+﻿
+
+
+@model List<InventarioModel>
+
+
+
+@{
+    ViewData["Title"] = "Consultar Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center mt-5 mb-3">
+    <h1>Lista de Productos</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+        <table id="Tabla" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Categoria</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    
+                    <th>Imagen</th>
+                    <th>Editar</th>
+                    <th>Detalles</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.Any())
+                {
+                    @foreach (var productos in Model)
+                    {
+                       
+                        <tr>
+                            <td>@productos.IdProducto</td>
+                            
+                            @if(productos.IdCategoria.Equals(1))
+                            {
+                                <td>Alimentos para mascotas</td>
+                            }
+                            else if (productos.IdCategoria.Equals(2))
+                            {
+                                <td>Juguetes para Mascotas</td>
+                            }
+                            else if (productos.IdCategoria.Equals(3))
+                            {
+                                <td>Cuidado y Salud</td>
+                            }
+                            else if (productos.IdCategoria.Equals(4))
+                            {
+                                <td>Accesorios para Mascotas</td>
+                            }
+                            else if (productos.IdCategoria.Equals(5))
+                            {
+                                <td>Higiene y Limpieza</td>
+                            }
+                            else if (productos.IdCategoria.Equals(6))
+                            {
+                                <td>Ropa para Mascotas</td>
+                            }
+                            
+                            
+
+                            <td>@productos.NombreProducto</td>
+                            <td>@productos.PrecioUnitario</td>
+                            <td>@productos.Stock</td>
+
+                            
+                                @if(productos.Estado.Equals(true))
+                                {
+                                    <td>Activo</td>
+                                }
+                                else
+                                {
+                                    <td>Inactivo</td>
+                                }
+                            
+                            <td>@productos.RutaImagen</td>
+                            
+
+                            <td>
+                                 <a href="@Url.Action("EditarProducto", new { Id = productos.IdProducto })" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>
+                            <td>
+                                 <a href="@Url.Action("ConsultarProducto", new { Id = productos.IdProducto })" class="btn btn-sm btn-info"><i class="fa-solid fa-question-circle"></i></a>
+
+                            </td>
+                       
+                        </tr>
+                        
+                        
+                    }
+                }
+                else
+                {
+
+                    <tr>
+                        <td colspan="5" class="text-center">No hay proveedores disponibles.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+         <div class="text-center">
+        <a href="@Url.Action("AgregarProducto")" class="btn btn-block btn-primary mb-4">Agregar Producto</a>
+    </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+
+
+   
+
+</div>
+
+
+
+<script src="~/page/vendor/jquery/jquery.js"></script>
+<script src="~/page/js/DataTable.js"></script>
