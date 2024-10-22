@@ -11,8 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-<<<<<<< Updated upstream
-builder.Services.AddScoped<ICredencialModel, CredencialModel>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ValidarSesionAttribute>(); // Registrar el filtro
 
@@ -23,8 +21,7 @@ builder.Services.AddSession(options =>
 	options.Cookie.IsEssential = true; // Para cumplir con el GDPR si es necesario
 });
 builder.Services.AddSession();
-=======
->>>>>>> Stashed changes
+
 
 //builder.Services.AddScoped<IProveedorModel, ProveedorModel>();
 
